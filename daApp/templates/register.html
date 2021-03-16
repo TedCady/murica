@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>project</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="static/css/Navbar-responsive.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+{% if messages %} {% for message in messages %}
+<p style="color: red;">{{message}}</p>
+{% endfor %} {% endif %}
+
+<body style="width: 100%;"><img class="register_img" src="static/img/OIP(21).jpg" style="width: 100%;">
+
+    <div class="col-md-8 offset-md-2" style="width: 300px;">
+
+        <form class="text-primary d-flex flex-column justify-content-center align-items-center reg_form" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="100" style="width: 350px;height: 500px;padding: 0px;margin: 0;margin-top: 300px;margin-right: 0px;background: rgba(255,255,255,0.29);"
+            method="post" action="/reg">
+            {% csrf_token %}
+            <h1 style="margin-bottom: 0px;padding: 0px;font-size: 33px;color: rgb(6,6,6);border-color: rgb(254,252,252);">
+                Register Here</h1>
+            <div class="form-row form-group" style="margin-top: 27px;">
+                <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">First
+                        Name</label></div>
+
+                <div class="col-sm-6 input-column"><input class="form-control" type="text" style="border-style: solid;border-color: var(--dark);" minlength="2" maxlength="255" pattern="[A-Za-z]{4, }" name="first_name" value="{{first_name}}"></div>
+            </div>
+            <div class="form-row form-group">
+                <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Last Name
+                    </label></div>
+                <div class="col-sm-6 input-column"><input class="form-control" type="text" style="border-style: solid;border-color: var(--dark);" required="" minlength="2" maxlength="255" pattern="[A-Za-z]{4, }" name="last_name" value="{{last_name}}"></div>
+            </div>
+            <div class="form-row form-group" style="width: 295px;">
+                <div class="col-sm-4 label-column" style="text-align: left;"><label class="col-form-label" for="email-input-field">Email </label></div>
+                <div class="col-sm-6 input-column"><input class="form-control" type="email" style="border-style: solid;border-color: var(--dark);width: 137px;" pattern="[a-z0-9.%+-]+@[a-z0-9.-]+.[a-z]{2,}$" minlength="2" maxlength="255" name="email" value="{{email}}"></div>
+            </div>
+            <div class="form-row form-group" style="width: 295px;">
+                <div class="col-sm-4 label-column"><label class="col-form-label" for="pawssword-input-field">Password
+                    </label></div>
+                <div class="col-sm-6 input-column"><input class="form-control" type="password" minlength="8" required style="border-style: solid;border-color: var(--dark);" name="password"></div>
+            </div>
+            <div class="form-row form-group" style="width: 295px;">
+                <div class="col-sm-4 label-column" style="text-align: left;"><label class="col-form-label" for="repeat-pawssword-input-field" style="text-align: center;font-size: 14px;">Confirm Password
+                    </label></div>
+                <div class="col-sm-6 input-column"><input class="form-control" type="password" minlength="8" required style="border-style: solid;border-color: var(--dark);" name="confirm"></div>
+            </div><select class="form-control d-flex mb-3" style="width: 175px;" name="branch" required>
+                    <option value="">Select</option>
+                    {% for x in branch %}
+                    {% if branchId == x.id%}
+                    <option value ="{{x.id}}" selected>{{x.title}}</option>
+                    {% else %}
+                    <option value ="{{x.id}}">{{x.title}}</option>
+                    {% endif %}
+                    {% endfor %}
+            </select>
+            <button class="btn btn-light" type="submit" style="border-style: solid;border-color: var(--dark);">Submit</button><a href="/login" style="color:black">Already
+                Registered?|</a><a href="/" style="color:black">Home</a>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+    <script src="static/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="static/js/Navbar-responsive.js"></script>
+</body>
+
+</html>
